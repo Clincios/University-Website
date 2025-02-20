@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'wgis/auth.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="password-reset-container">
+    <h2 class="text-center mb-4">Reset Your Password</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" id="passwordResetForm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <div class="password-requirements">
+            <div class="requirement" data-requirement="length">
+                <span class="requirement-icon"></span>
+                At least 8 characters long
+            </div>
+            <div class="requirement" data-requirement="number">
+                <span class="requirement-icon"></span>
+                Contains a number
+            </div>
+            <div class="requirement" data-requirement="uppercase">
+                <span class="requirement-icon"></span>
+                Contains an uppercase letter
+            </div>
+            <div class="requirement" data-requirement="special">
+                <span class="requirement-icon"></span>
+                Contains a special character
+            </div>
+            <div class="requirement" data-requirement="match">
+                <span class="requirement-icon"></span>
+                Passwords match
+            </div>
+        </div>
+
+        <button type="submit" class="btn-reset" disabled>Reset Password</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('passwordResetForm');
+    const password1 = form.querySelector('input[name="new_password1"]');
+    const password2 = form.querySelector('input[name="new_password2"]');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    const requirements = {
+        length: str => str.length >= 8,
+        number: str => /\d/.test(str),
+        uppercase: str => /[A-Z]/.test(str),
+        special: str => /[!@#$%^&*(),.?":{}|<>]/.test(str),
+        match: () => password1.value === password2.value
+    };
+
+    function updateRequirements() {
+        const password = password1.value;
+        let allValid = true;
+
+        Object.entries(requirements).forEach(([requirement, validateFn]) => {
+            const requirementEl = document.querySelector(`[data-requirement="${requirement}"]`);
+            const isValid = validateFn(password);
+            
+            requirementEl.classList.toggle('valid', isValid);
+            requirementEl.classList.toggle('invalid', !isValid);
+            
+            if (!isValid) allValid = false;
+        });
+
+        submitButton.disabled = !allValid;
+    }
+
+    password1.addEventListener('input', updateRequirements);
+    password2.addEventListener('input', updateRequirements);
+
+    form.addEventListener('submit', function(e) {
+        if (password1.value !== password2.value) {
+            e.preventDefault();
+            alert('Passwords do not match!');
+        }
+    });
+});
+</script>
+{% endblock %}

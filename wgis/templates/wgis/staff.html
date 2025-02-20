@@ -1,0 +1,136 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'wgis/staff.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="staff-container">
+    <header class="staff-header">
+        <h1>Our Staff</h1>
+        <p class="header-description">Meet our dedicated team of professionals</p>
+    </header>
+
+    <section class="leadership-team">
+        <h2>Leadership Team</h2>
+        <div class="staff-grid">
+            <div class="staff-card leadership">
+                <div class="staff-image">
+                    <img src="{% static 'wgis/images/sarah.jpg' %}" alt="Principal">
+                </div>
+                <div class="staff-info">
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p class="position">Principal</p>
+                    <p class="credentials">Ph.D. in Educational Leadership</p>
+                    <div class="contact-info">
+                        <a href="mailto:0d_routing_vague@hidmail.org"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card leadership">
+                <div class="staff-image">
+                    <img src="{% static 'wgis/images/michael.avif' %}" alt="Vice Principal">
+                </div>
+                <div class="staff-info">
+                    <h3>Dr. Michael Chen</h3>
+                    <p class="position">Vice Principal</p>
+                    <p class="credentials">Ph.D. in Education Administration</p>
+                    <div class="contact-info">
+                        <a href="mailto:0d_routing_vague@hidmail.org"><i class="fas fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="department-heads">
+        <h2>Department Heads</h2>
+        <div class="staff-grid">
+            <div class="staff-card">
+                <div class="staff-image">
+                    <img src="{% static 'wgis/images/emilya.jpg' %}" alt="Science Department Head">
+                </div>
+                <div class="staff-info">
+                    <h3>Prof. Emily Brown</h3>
+                    <p class="position">Head of Science</p>
+                    <p class="credentials">M.Sc. in Physics</p>
+                    <div class="contact-info">
+                        <a href="mailto:0d_routing_vague@hidmail.org"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <img src="{% static 'wgis/images/wilson.jpeg' %}" alt="Mathematics Department Head">
+                </div>
+                <div class="staff-info">
+                    <h3>Dr. James Wilson</h3>
+                    <p class="position">Head of Mathematics</p>
+                    <p class="credentials">Ph.D. in Mathematics</p>
+                    <div class="contact-info">
+                        <a href="mailto:0d_routing_vague@hidmail.org"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="staff-card">
+                <div class="staff-image">
+                    <img src="{% static 'wgis/images/Garcia.jpg' %}" alt="Languages Department Head">
+                </div>
+                <div class="staff-info">
+                    <h3>Prof. Maria Garcia</h3>
+                    <p class="position">Head of Languages</p>
+                    <p class="credentials">M.A. in Linguistics</p>
+                    <div class="contact-info">
+                            <a href="mailto:0d_routing_vague@hidmail.org"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="staff-directory">
+        <h2>Staff Directory</h2>
+        <div class="directory-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="teaching">Teaching</button>
+            <button class="filter-btn" data-filter="administrative">Administrative</button>
+            <button class="filter-btn" data-filter="support">Support</button>
+        </div>
+        <div class="directory-search">
+            <input type="text" placeholder="Search staff..." id="staff-search">
+            <i class="fas fa-search"></i>
+        </div>
+    </section>
+
+    <section class="contact-department">
+        <h2>Contact Department</h2>
+        <div class="contact-cards">
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>Main Office: (555) 123-4567</p>
+                <p>Fax: (555) 123-4568</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>info@school.edu</p>
+                <p>admin@school.edu</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-clock"></i>
+                <h3>Office Hours</h3>
+                <p>Monday - Friday</p>
+                <p>8:00 AM - 4:00 PM</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

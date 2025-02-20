@@ -1,0 +1,106 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'wgis/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Home Content -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Wisdom Gate International School</h1>
+        <p>Nurturing Excellence, Building Character, Shaping Future Leaders</p>
+        <a href="{% url 'wgis:about' %}" class="cta-button">Learn More</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fas fa-graduation-cap feature-icon"></i>
+            <h3>Quality Education</h3>
+            <p>World-class curriculum and experienced faculty</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-users feature-icon"></i>
+            <h3>Small Class Sizes</h3>
+            <p>Personalized attention for every student</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-globe feature-icon"></i>
+            <h3>Global Perspective</h3>
+            <p>International standards and diverse community</p>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="news" id="news">
+    <h2 style="text-align: center; margin-bottom: 2rem;">Latest News</h2>
+    <div class="news-carousel-container">
+        <button class="carousel-arrow prev-arrow">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="news-carousel">
+            {% for news_item in news_items %}
+            <div class="news-card">
+                <a href="{% url 'wgis:news_detail' news_item.id %}" class="news-card-link">
+                    <div class="news-image">
+                        <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}">
+                    </div>
+                    <div class="news-content">
+                        <p class="news-date">{{ news_item.date|date:"F d, Y" }}</p>
+                        <h3>{{ news_item.title }}</h3>
+                        <p>{{ news_item.excerpt }}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow next-arrow">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <h3>1000+</h3>
+            <p>Students</p>
+        </div>
+        <div class="stat-item">
+            <h3>100+</h3>
+            <p>Expert Teachers</p>
+        </div>
+        <div class="stat-item">
+            <h3>95%</h3>
+            <p>Success Rate</p>
+        </div>
+        <div class="stat-item">
+            <h3>50+</h3>
+            <p>Programs</p>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.querySelector('.news-carousel');
+    const prevBtn = document.querySelector('.prev-arrow');
+    const nextBtn = document.querySelector('.next-arrow');
+    const cardWidth = 320; // card width + gap
+
+    prevBtn.addEventListener('click', () => {
+        carousel.scrollLeft -= cardWidth;
+    });
+
+    nextBtn.addEventListener('click', () => {
+        carousel.scrollLeft += cardWidth;
+    });
+});
+</script>
+{% endblock %}

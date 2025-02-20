@@ -1,0 +1,117 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'wgis/more.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="more-container">
+    <header class="more-header">
+        <h1>Additional Resources</h1>
+        <p class="header-description">Discover more about our institution</p>
+    </header>
+
+    <section class="quick-links">
+        <h2>Quick Links</h2>
+        <div class="links-grid">
+            <a href="{% url 'wgis:academics' %}#academic-calendar" class="link-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>Academic Calendar</h3>
+                <p>View important dates and schedules</p>
+            </a>
+            <a href="{% url 'wgis:home' %}#news" class="link-card">
+                <i class="fas fa-newspaper"></i>
+                <h3>News & Events</h3>
+                <p>Stay updated with latest happenings</p>
+            </a>
+            <a href="#" class="link-card">
+                <i class="fas fa-book"></i>
+                <h3>Library Portal</h3>
+                <p>Access digital resources</p>
+            </a>
+            <a href="#" class="link-card">
+                <i class="fas fa-medal"></i>
+                <h3>Alumni Network</h3>
+                <p>Connect with graduates</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="announcements">
+        <h2>Latest Announcements</h2>
+        <div class="announcement-list">
+            <div class="announcement-card">
+                <div class="announcement-date">
+                    <span class="day">15</span>
+                    <span class="month">MAR</span>
+                </div>
+                <div class="announcement-content">
+                    <h3>Summer Program Registration Open</h3>
+                    <p>Registration for summer courses is now open. Early bird discounts available.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <div class="announcement-date">
+                    <span class="day">10</span>
+                    <span class="month">MAR</span>
+                </div>
+                <div class="announcement-content">
+                    <h3>Research Symposium 2024</h3>
+                    <p>Annual research symposium scheduled for next month. Submit your abstracts.</p>
+                    <a href="#" class="read-more">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources">
+        <h2>Downloadable Resources</h2>
+        <div class="resources-grid">
+            {% for resource in resources %}
+            <div class="resource-card">
+                <i class="{{ resource.icon_class }}"></i>
+                <h3>{{ resource.title }}</h3>
+                <p>{{ resource.description }}</p>
+                <a href="{{ resource.pdf_file.url }}" class="download-btn" download>Download PDF</a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">
+                    How do I apply for admission?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Visit our admissions page and follow the step-by-step application process. Make sure to submit all required documents before the deadline.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    What scholarships are available?
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We offer various merit-based and need-based scholarships. Check our financial aid section for detailed information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const faqItem = button.parentElement;
+        faqItem.classList.toggle('active');
+    });
+});
+</script>
+{% endblock %} 

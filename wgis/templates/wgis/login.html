@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'wgis/auth.css' %}" rel="stylesheet">
+    <title>ALX Admissions Portal</title>
+</head>
+<body>
+    <div class="container">
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        <div class="logo-section">
+            <img src="{% static 'wgis/images/logo.png' %}" alt="WGIS Logo" class="logo" style="width: 200px; height: auto; object-fit: contain;">
+            <h1 class="welcome-text">WGIS Student Portal</h1>
+            <p class="description">
+                This is the WGIS Students Portal, your first step towards gaining some of today's most sought-after skills and joining our incredible talent community.
+            </p>
+            <p class="description">
+                To get started, you need to create an account or log back in by entering your email address, phone number and password. Or, you could log in using Google or GitHub.
+            </p>
+        </div>
+        <div class="signup-section" style="width: 850px;">
+            <h2 class="signup-title">Sign In To Your Account</h2>
+            <div class="social-buttons">
+                <a href="{% url 'wgis:google_login' %}" class="social-button google-btn">
+                    <i class="fab fa-google"></i>
+                    Google
+                </a>
+                <button class="social-button github-btn">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </button>
+            </div>
+            <div class="divider">Or continue with</div>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="errorlist">
+                    {% for error in form.non_field_errors %}
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-circle error-icon"></i>
+                            <p class="error-text">{{ error }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="firstName">Username</label>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Password</label>
+                    {{ form.password }}
+                    {{ form.password.errors}}
+                </div>
+
+                <div class="form-group form-check">
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        {{ form.remember_me }}
+                        <label for="{{ form.remember_me.id_for_label }}">Remember me</label>
+                    </div>
+                    <a href="{% url 'wgis:password_reset' %}" class="text-sm text-blue-600 hover:text-blue-500" style="float: right;">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <button type="submit" class="submit-button">Login</button>
+            </form>
+            <div class="login-link">
+                Don't have an account yet? <a href="{% url 'wgis:signup' %}">Signup</a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all alert messages
+            const messages = document.querySelectorAll('.alert');
+            
+            // Add show class to make them visible with animation
+            messages.forEach(message => {
+                message.classList.add('show');
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    message.classList.remove('show');
+                    // Remove the element after animation completes
+                    setTimeout(() => {
+                        message.remove();
+                    }, 600);
+                }, 10000);
+            });
+        });
+        </script>
+</body>
+</html>

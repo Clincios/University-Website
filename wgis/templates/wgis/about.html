@@ -1,0 +1,60 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'wgis/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <div class="about-container">
+        <h1 class="section-title">About Wisdom Gate International School</h1>
+        
+        <div class="about-content">
+            <div class="mission-statement">
+                <h2>Our Mission</h2>
+                <p>At Wisdom Gate International School, we are dedicated to nurturing academic excellence, character development, and global awareness. Our commitment to providing quality education empowers students to become lifelong learners and responsible global citizens.</p>
+            </div>
+
+            <div class="expertise-section">
+                <h2>Our Educational Focus</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-item">
+                        <h3>Academic Excellence</h3>
+                        <p>Rigorous curriculum designed to challenge and inspire students to reach their full potential.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>Character Development</h3>
+                        <p>Emphasis on moral values, leadership skills, and personal growth.</p>
+                    </div>
+                    <div class="expertise-item">
+                        <h3>Global Perspective</h3>
+                        <p>Preparing students for success in an increasingly interconnected world.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="values-section">
+                <h2>Our Core Values</h2>
+                <ul class="values-list">
+                    <li><strong>Excellence:</strong> Striving for the highest standards in education</li>
+                    <li><strong>Integrity:</strong> Upholding moral and ethical principles</li>
+                    <li><strong>Innovation:</strong> Embracing modern educational methods</li>
+                    <li><strong>Respect:</strong> Fostering mutual understanding and appreciation</li>
+                </ul>
+            </div>
+
+            <div class="team-section">
+                <h2>Our Faculty</h2>
+                <p>Our dedicated team of experienced educators brings together diverse expertise and a passion for teaching. With qualified teachers and support staff, we provide a nurturing environment that encourages academic growth and personal development.</p>
+            </div>
+
+            <div class="cta-section">
+                <h2>Join Our Community</h2>
+                <p>Discover the opportunities waiting for your child at Wisdom Gate International School.</p>
+                <a href="{% url 'wgis:signup' %}" class="cta-button">Join Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'wgis/forms.css' %}">
+</head>
+
+{% block content %}
+<div class="otp-container">
+    <div class="otp-header">
+        <h1>Verify Your Account</h1>
+        <p>Please enter the 6-digit code sent to your email</p>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" style="color: #dc2626; text-align: center; margin: 10px 0;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="otp-form" id="otpForm">
+        {% csrf_token %}
+        <div class="otp-input-group">
+            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            <input type="text" class="otp-input" maxlength="1" pattern="[0-9]" required>
+            <input type="hidden" name="otp" id="otpValue">
+        </div>
+        <button type="submit" class="submit-btn">Verify OTP</button>
+    </form>
+
+    <div class="resend-link">
+       <p>Didn't receive the code?<a href="#" id="resendOtp"> Resend</a></p> 
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('.otp-input');
+    const form = document.getElementById('otpForm');
+    const otpValue = document.getElementById('otpValue');
+
+    // Auto-focus and move to next input
+    inputs.forEach((input, index) => {
+        input.addEventListener('keyup', function(e) {
+            if (this.value.length === 1) {
+                if (index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            } else if (this.value.length === 0 && e.key === 'Backspace' && index > 0) {
+                inputs[index - 1].focus();
+            }
+        });
+
+        // Allow only numbers
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        // Handle paste event
+        input.addEventListener('paste', function(e) {
+            e.preventDefault();
+            const pastedData = e.clipboardData.getData('text').slice(0, 6);
+            if (/^\d+$/.test(pastedData)) {
+                [...pastedData].forEach((digit, i) => {
+                    if (inputs[i]) {
+                        inputs[i].value = digit;
+                    }
+                });
+                if (inputs[pastedData.length]) {
+                    inputs[pastedData.length].focus();
+                }
+            }
+        });
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', function(e) {
+        const otp = Array.from(inputs).map(input => input.value).join('');
+        otpValue.value = otp;
+    });
+
+    // Optional: Handle resend OTP
+    document.getElementById('resendOtp').addEventListener('click', function(e) {
+        e.preventDefault();
+        // Add your resend OTP logic here
+        alert('Resend OTP functionality to be implemented');
+    });
+});
+</script>
+
+{% endblock %}

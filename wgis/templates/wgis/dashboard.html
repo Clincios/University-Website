@@ -1,0 +1,92 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'wgis/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Welcome, {{user.username}}</h1>
+    
+    <div class="results-section">
+        <h2>Academic Results</h2>
+        
+        <div class="filters">
+            <select id="semesterFilter">
+                <option value="">All Semesters</option>
+                {% for semester in semesters %}
+                    <option value="{{ semester }}">{{ semester }}</option>
+                {% endfor %}
+            </select>
+            
+            <select id="yearFilter">
+                <option value="">All Years</option>
+                {% for year in academic_years %}
+                    <option value="{{ year }}">{{ year }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="results-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Title</th>
+                        <th>Credit</th>
+                        <th>Exam Score</th>
+                        <th>Total Score</th>
+                        <th>Grade</th>
+                        <th>Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr data-semester="{{ result.semester }}" data-year="{{ result.academic_year }}">
+                        <td>{{ result.course_code }}</td>
+                        <td>{{ result.course_title }}</td>
+                        <td>{{ result.course_credit }}</td>
+                        <td>{{ result.exam_score }}</td>
+                        <td>{{ result.total_score }}</td>
+                        <td>{{ result.grade }}</td>
+                        <td>{{ result.remark }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7">No results available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <form method="POST" action="{% url 'wgis:logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Logout</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const semesterFilter = document.getElementById('semesterFilter');
+    const yearFilter = document.getElementById('yearFilter');
+    const resultRows = document.querySelectorAll('.results-table tbody tr');
+
+    function filterResults() {
+        const selectedSemester = semesterFilter.value;
+        const selectedYear = yearFilter.value;
+
+        resultRows.forEach(row => {
+            const showSemester = !selectedSemester || row.dataset.semester === selectedSemester;
+            const showYear = !selectedYear || row.dataset.year === selectedYear;
+            row.style.display = (showSemester && showYear) ? '' : 'none';
+        });
+    }
+
+    semesterFilter.addEventListener('change', filterResults);
+    yearFilter.addEventListener('change', filterResults);
+});
+</script>
+{% endblock %}

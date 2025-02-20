@@ -1,0 +1,109 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'wgis/academics.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="academics-container">
+    <header class="academics-header">
+        <h1>Academic Programs</h1>
+        <p class="header-description">Discover our comprehensive range of academic programs designed to shape future leaders</p>
+    </header>
+
+    <section class="programs-grid">
+        <div class="program-card">
+            <div class="program-icon">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <h2>Computer Science</h2>
+            <p>Explore the world of computing, programming, and digital innovation</p>
+            <ul class="program-details">
+                <li>Software Engineering</li>
+                <li>Artificial Intelligence</li>
+                <li>Data Science</li>
+                <li>Cybersecurity</li>
+            </ul>
+        </div>
+
+        <div class="program-card">
+            <div class="program-icon">
+                <i class="fas fa-business-time"></i>
+            </div>
+            <h2>Business Administration</h2>
+            <p>Develop essential business skills and leadership capabilities</p>
+            <ul class="program-details">
+                <li>Marketing Management</li>
+                <li>Finance</li>
+                <li>International Business</li>
+                <li>Entrepreneurship</li>
+            </ul>
+        </div>
+
+        <div class="program-card">
+            <div class="program-icon">
+                <i class="fas fa-flask"></i>
+            </div>
+            <h2>Engineering</h2>
+            <p>Innovation and problem-solving in various engineering disciplines</p>
+            <ul class="program-details">
+                <li>Mechanical Engineering</li>
+                <li>Electrical Engineering</li>
+                <li>Civil Engineering</li>
+                <li>Chemical Engineering</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="academic-resources">
+        <h2>Academic Resources</h2>
+        <div class="resources-grid">
+            <div class="resource-item">
+                <i class="fas fa-book-reader"></i>
+                <h3>Library</h3>
+                <p>Access to vast digital and physical resources</p>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-users"></i>
+                <h3>Study Groups</h3>
+                <p>Collaborative learning opportunities</p>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>Tutoring</h3>
+                <p>One-on-one academic support</p>
+            </div>
+            <div class="resource-item">
+                <i class="fas fa-laptop"></i>
+                <h3>Online Learning</h3>
+                <p>Digital learning platforms and tools</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="academic-calendar" id="academic-calendar">
+        <h2>Academic Calendar</h2>
+        <div class="calendar-container">
+            <div class="semester">
+                <h3>Fall Semester</h3>
+                <ul>
+                    <li>Registration: Aug 15 - Aug 30</li>
+                    <li>Classes Begin: Sept 1</li>
+                    <li>Mid-terms: Oct 15 - Oct 22</li>
+                    <li>Finals: Dec 10 - Dec 20</li>
+                </ul>
+            </div>
+            <div class="semester">
+                <h3>Spring Semester</h3>
+                <ul>
+                    <li>Registration: Jan 5 - Jan 15</li>
+                    <li>Classes Begin: Jan 20</li>
+                    <li>Mid-terms: Mar 10 - Mar 17</li>
+                    <li>Finals: May 15 - May 25</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %} 

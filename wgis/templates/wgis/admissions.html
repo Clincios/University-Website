@@ -1,0 +1,124 @@
+{% extends 'wgis/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'wgis/admissions.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="admissions-container">
+    <header class="admissions-header">
+        <h1>Admissions</h1>
+        <p class="header-description">Begin your journey to academic excellence</p>
+    </header>
+
+    <section class="admission-process">
+        <h2>Application Process</h2>
+        <div class="process-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <i class="fas fa-file-alt"></i>
+                <h3>Submit Application</h3>
+                <p>Complete the online application form with all required information</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <i class="fas fa-file-upload"></i>
+                <h3>Upload Documents</h3>
+                <p>Submit transcripts, test scores, and other required documents</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <i class="fas fa-money-check"></i>
+                <h3>Pay Fees</h3>
+                <p>Submit the application processing fee</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <i class="fas fa-clock"></i>
+                <h3>Wait for Review</h3>
+                <p>Applications are typically reviewed within 2-3 weeks</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="requirements">
+        <h2>Admission Requirements</h2>
+        <div class="requirements-grid">
+            <div class="requirement-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Academic Requirements</h3>
+                <ul>
+                    <li>High School Diploma or equivalent</li>
+                    <li>Minimum GPA of 3.0</li>
+                    <li>SAT/ACT Scores</li>
+                    <li>Letters of Recommendation</li>
+                </ul>
+            </div>
+            <div class="requirement-card">
+                <i class="fas fa-language"></i>
+                <h3>Language Requirements</h3>
+                <ul>
+                    <li>TOEFL score of 80 or higher</li>
+                    <li>IELTS score of 6.5 or higher</li>
+                    <li>English Proficiency Certificate</li>
+                </ul>
+            </div>
+            <div class="requirement-card">
+                <i class="fas fa-file-alt"></i>
+                <h3>Required Documents</h3>
+                <ul>
+                    <li>Official Transcripts</li>
+                    <li>Statement of Purpose</li>
+                    <li>Resume/CV</li>
+                    <li>Portfolio (if applicable)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="important-dates">
+        <h2>Important Dates</h2>
+        <div class="dates-container">
+            <div class="date-card">
+                <h3>Fall Semester</h3>
+                <ul>
+                    <li><span>Early Decision:</span> November 1</li>
+                    <li><span>Regular Decision:</span> January 15</li>
+                    <li><span>Decision Notification:</span> March 31</li>
+                </ul>
+            </div>
+            <div class="date-card">
+                <h3>Spring Semester</h3>
+                <ul>
+                    <li><span>Application Deadline:</span> October 1</li>
+                    <li><span>Decision Notification:</span> November 15</li>
+                    <li><span>Enrollment Deadline:</span> December 1</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-info">
+        <h2>Contact Admissions Office</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>0d_routing_vague@hidmail.org</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+1 (555) 123-4567</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Admissions Office, Main Campus</p>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

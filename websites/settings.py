@@ -40,7 +40,6 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 # Application definition
 
 INSTALLED_APPS = [
-    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,10 +139,7 @@ if DJANGO_ENV == "development":
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'wgis/static'),
-    ]
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
 
 # Add these settings after STATIC_URL configuration
@@ -193,9 +190,3 @@ cloudinary.config(
       api_secret=config('your_api_secret'),
       secure = True
   )
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': config('your_cloud_name'),
-    'API_KEY': config('your_api_key'),
-    'API_SECRET': config('your_api_secret'),
-}

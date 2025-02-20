@@ -32,7 +32,7 @@ DJANGO_ENV = config("DJANGO_ENV", default="development")
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DJANGO_ENV == "development"
+DEBUG = DJANGO_ENV == "production"
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
@@ -40,6 +40,7 @@ ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wgis',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -137,7 +139,7 @@ if DJANGO_ENV == "development":
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
     
 
 # Add these settings after STATIC_URL configuration
@@ -188,3 +190,9 @@ cloudinary.config(
       api_secret=config('your_api_secret'),
       secure = True
   )
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your_cloud_name',
+    'API_KEY': 'your_api_key',
+    'API_SECRET': 'your_api_secret'
+}

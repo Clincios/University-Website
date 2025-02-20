@@ -139,7 +139,10 @@ if DJANGO_ENV == "development":
     ]
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'wgis/static'),
+    ]
+    STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'
     
 
 # Add these settings after STATIC_URL configuration
@@ -192,7 +195,7 @@ cloudinary.config(
   )
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'your_cloud_name',
-    'API_KEY': 'your_api_key',
-    'API_SECRET': 'your_api_secret'
+    'CLOUD_NAME': config('your_cloud_name'),
+    'API_KEY': config('your_api_key'),
+    'API_SECRET': config('your_api_secret'),
 }

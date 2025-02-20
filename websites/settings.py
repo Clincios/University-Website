@@ -32,7 +32,7 @@ DJANGO_ENV = config("DJANGO_ENV", default="development")
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = DJANGO_ENV == "production"
+DEBUG = DJANGO_ENV == "development"
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
